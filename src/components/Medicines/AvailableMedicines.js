@@ -5,7 +5,7 @@ import classes from "./AvailableMedicines.module.css";
 import MedicineContext from "../../store/medicine-context";
 
 const AvailableMedicines = () => {
-  const medCtx = useContext(MedicineContext)
+  const medCtx = useContext(MedicineContext);
   const medList = medCtx.newMed.map((med) => (
     <MedicineItem
       id={med.id}
@@ -13,6 +13,8 @@ const AvailableMedicines = () => {
       name={med.name}
       description={med.description}
       price={med.price}
+      availableQuantity={med.availableQuantity}
+      inStock={med.inStock}
     />
   ));
 

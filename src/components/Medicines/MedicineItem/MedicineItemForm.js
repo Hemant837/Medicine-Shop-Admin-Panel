@@ -9,7 +9,10 @@ const MedicineItemForm = (props) => {
   const addItemToCartHandler = (event) => {
     event.preventDefault();
     const quantity = document.getElementById("amount" + props.id).value;
-    
+    console.log("props.item:", props.item);
+    console.log("quantity:", quantity);
+    console.log("inStock:", props.item.inStock);
+
     cartCtx.addItem({
       ...props.item,
       quantity: Number(quantity),
@@ -29,7 +32,11 @@ const MedicineItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <button onClick={addItemToCartHandler}>+ Add</button>
+      {props.item.inStock ? (
+        <button onClick={addItemToCartHandler}>+ Add</button>
+      ) : (
+        <p>Out Of Stock</p>
+      )}
     </form>
   );
 };

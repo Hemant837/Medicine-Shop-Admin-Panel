@@ -8,6 +8,7 @@ const NewMedicine = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [availableQuantity, setAvailableQuantity] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -21,6 +22,10 @@ const NewMedicine = () => {
     setPrice(event.target.value);
   };
 
+  const handleAvailableQuantityChange = (event) => {
+    setAvailableQuantity(event.target.value);
+  };
+
   const addNewMedicineHandler = (event) => {
     event.preventDefault();
     const newMedicine = {
@@ -28,13 +33,15 @@ const NewMedicine = () => {
       name: name,
       description: description,
       price: parseFloat(price),
+      availableQuantity: parseInt(availableQuantity),
+      inStock: true,
     };
 
     medCtx.addMed(newMedicine);
-
     setName("");
     setDescription("");
     setPrice("");
+    setAvailableQuantity("");
   };
 
   return (
@@ -67,6 +74,16 @@ const NewMedicine = () => {
           name="price"
           value={price}
           onChange={handlePriceChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="available-quantity">Available Quantity</label>
+        <input
+          id="available-quantity"
+          type="number"
+          name="available-quantity"
+          value={availableQuantity}
+          onChange={handleAvailableQuantityChange}
         />
       </div>
       <button onClick={addNewMedicineHandler}>Add Medicine</button>
